@@ -24,9 +24,11 @@ export function CalculatorPage() {
       <header className="bg-card border-b border-border px-4 py-4 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <Calculator className="w-5 h-5 text-primary" />
-            </div>
+            <img 
+              src="/assets/file_00000000b77c72089c9effad0d4cec39.png" 
+              alt="SD Calculator Logo" 
+              className="w-10 h-10 rounded-lg object-contain"
+            />
             <div>
               <h1 className="text-lg font-semibold text-foreground">Scientific Calculator</h1>
               <p className="text-xs text-muted-foreground">Soumyajit Dutta</p>

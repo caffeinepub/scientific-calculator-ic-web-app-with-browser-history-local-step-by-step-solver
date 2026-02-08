@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-build-a-complete-mobile-friendly-internet-computer-web-app-not-a-native-android-apk-that-presents-a-single-page-scientific-calculator-experience-and-behaves-like-an-android-app-app-shell-style-layout-suitable-for-being-added-to-home-screen",
-      "featureTitle": "Build a complete mobile-friendly Internet Computer web app (not a native Android APK) that presents a single-page scientific calculator experience and “behaves like an Android app” (app-shell style layout suitable for being added to home screen).",
+      "featureId": "feature-add-the-user-uploaded-logo-image-file-00000000b77c72089c9effad0d4cec39-png-to-the-app-s-static-assets-and-render-it-in-the-calculator-header-alongside-the-existing-soumyajit-dutta-text-do-not-replace-the-name-keeping-the-current-premium-white-light-theme-intact",
+      "featureTitle": "Add the user-uploaded logo image (file_00000000b77c72089c9effad0d4cec39.png) to the app’s static assets and render it in the calculator header alongside the existing “Soumyajit Dutta” text (do not replace the name), keeping the current premium white/light theme intact.",
       "files": [
-        "frontend/index.html",
-        "frontend/public/manifest.webmanifest",
-        "frontend/src/App.tsx"
+        "frontend/src/features/calculator/CalculatorPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -17,22 +15,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-9"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-the-scientific-calculator-ui-with-the-provided-button-set-and-operations-ac-backspace-parentheses-sin-cos-tan-log-ln-x-x-y-digits-decimal-point-e-factorial-and-for-evaluation",
-      "featureTitle": "Implement the scientific calculator UI with the provided button set and operations: AC, backspace, parentheses, sin, cos, tan, √, log, ln, x², x^y, digits, decimal point, ±, +, −, ×, ÷, π, e, factorial (!), and = for evaluation.",
+      "featureId": "feature-update-the-header-layout-implementation-in-frontend-src-features-calculator-calculatorpage-tsx-to-accommodate-the-added-logo-while-preserving-current-spacing-typography-and-overall-header-hierarchy",
+      "featureTitle": "Update the header layout implementation in frontend/src/features/calculator/CalculatorPage.tsx to accommodate the added logo while preserving current spacing, typography, and overall header hierarchy.",
       "files": [
-        "frontend/src/features/calculator/CalculatorDisplay.tsx",
-        "frontend/src/features/calculator/CalculatorKeypad.tsx",
-        "frontend/src/features/calculator/CalculatorPage.tsx",
-        "frontend/src/features/calculator/useCalculator.ts",
-        "frontend/src/lib/calc/evaluate.ts",
-        "frontend/src/lib/calc/math.ts",
-        "frontend/src/lib/calc/parse.ts",
-        "frontend/src/lib/calc/tokenize.ts"
+        "frontend/src/features/calculator/CalculatorPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -42,106 +33,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-calculation-history-saved-only-in-the-browser-local-persistence-provide-ui-to-view-history-and-clear-it",
-      "featureTitle": "Implement calculation history saved only in the browser (local persistence). Provide UI to view history and clear it.",
-      "files": [
-        "frontend/src/features/calculator/CalculatorPage.tsx",
-        "frontend/src/features/history/HistoryPanel.tsx",
-        "frontend/src/features/history/useLocalHistory.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-local-rule-based-ai-step-solver-that-produces-a-detailed-step-by-step-explanation-for-the-current-expression-when-evaluated-without-calling-any-external-ai-apis",
-      "featureTitle": "Add a local, rule-based “AI step solver” that produces a detailed step-by-step explanation for the current expression when evaluated, without calling any external AI APIs.",
-      "files": [
-        "frontend/src/features/calculator/CalculatorPage.tsx",
-        "frontend/src/features/steps/StepsPanel.tsx",
-        "frontend/src/lib/calc/stepSolver.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-premium-white-light-visual-theme-consistently-across-the-app-typography-spacing-surfaces-button-hierarchy-focus-states-and-ensure-a-polished-mobile-first-layout",
-      "featureTitle": "Apply a premium white/light visual theme consistently across the app (typography, spacing, surfaces, button hierarchy, focus states) and ensure a polished, mobile-first layout.",
-      "files": [
-        "frontend/src/features/calculator/CalculatorKeypad.tsx",
-        "frontend/src/features/history/HistoryPanel.tsx",
-        "frontend/src/features/steps/StepsPanel.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-display-the-name-soumyajit-dutta-in-the-app-ui-in-a-clear-intentional-location-e-g-header-title-area-as-part-of-the-calculator-page",
-      "featureTitle": "Display the name “Soumyajit Dutta” in the app UI in a clear, intentional location (e.g., header/title area) as part of the calculator page.",
-      "files": [
-        "frontend/src/App.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-choose-and-apply-one-coherent-distinct-visual-direction-for-the-premium-light-theme-colors-typography-component-shapes-and-enforce-it-consistently-across-all-screens-components",
-      "featureTitle": "Choose and apply one coherent, distinct visual direction for the premium light theme (colors, typography, component shapes) and enforce it consistently across all screens/components.",
-      "files": [
-        "frontend/src/features/calculator/CalculatorPage.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
+        "REQ-10"
       ],
       "confidence": "high"
     }

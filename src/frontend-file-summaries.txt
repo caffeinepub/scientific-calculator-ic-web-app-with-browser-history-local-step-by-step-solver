@@ -3,7 +3,7 @@
   "frontend/index.html": "HTML entry point with PWA meta tags for mobile app-like experience and manifest link.",
   "frontend/public/manifest.webmanifest": "Web app manifest for add-to-home-screen functionality with standalone display mode.",
   "frontend/src/App.tsx": "Root application component that renders the calculator page.",
-  "frontend/src/features/calculator/CalculatorPage.tsx": "Main calculator page with header showing \"Soumyajit Dutta\", display, keypad, history toggle, steps panel, and footer with attribution.",
+  "frontend/src/features/calculator/CalculatorPage.tsx": "Main calculator page with header displaying the SD logo alongside \"Soumyajit Dutta\", calculator/history toggle, display, keypad, steps panel, and footer with attribution.",
   "frontend/src/features/calculator/CalculatorDisplay.tsx": "Calculator display component showing current expression, result, and error messages with premium styling.",
   "frontend/src/features/calculator/CalculatorKeypad.tsx": "Scientific calculator keypad with 8x4 grid of buttons including all scientific functions, styled with variant-based theming.",
   "frontend/src/features/calculator/useCalculator.ts": "Calculator state management hook handling display, result, error, and button interactions with tokenize/parse/evaluate pipeline.",

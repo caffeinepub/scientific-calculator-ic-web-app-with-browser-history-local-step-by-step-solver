@@ -1,16 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Build a mobile-friendly, single-page Internet Computer scientific calculator web app with a premium light theme, browser-saved history, and a local rule-based step-by-step solver.
+**Goal:** Add the uploaded logo to the calculator header alongside the existing “Soumyajit Dutta” text, preserving the current premium white/light theme and header functionality.
 
 **Planned changes:**
-- Create an app-shell style, mobile-first single-page UI (header + main content) suitable for home-screen-like use.
-- Implement a scientific calculator keypad and input/display supporting: AC, backspace, parentheses, sin, cos, tan, √, log, ln, x², x^y, digits, decimal point, ±, +, −, ×, ÷, π, e, factorial (!), and =.
-- Add a safe expression parser/evaluator (no JavaScript `eval`) with correct precedence and parentheses; validate factorial inputs (non-negative integers only) and show errors for invalid cases.
-- Persist calculation history locally in the browser; provide a history view and a clear-history control.
-- Implement a local, rule-based step-by-step solver that shows multi-step explanations after evaluation and provides helpful error explanations for invalid expressions.
-- Apply one coherent premium white/light visual direction across the app (typography, spacing, surfaces, button hierarchy, and focus/active states).
-- Display the name “Soumyajit Dutta” prominently in the main UI (e.g., header/title area) without overlapping on mobile.
-- Keep the Internet Computer backend canister minimal and deployable, with no backend persistence or sync for history.
+- Add the uploaded image (file_00000000b77c72089c9effad0d4cec39.png) to the frontend static assets and reference it from the header UI.
+- Update the header layout in `frontend/src/features/calculator/CalculatorPage.tsx` to display the logo together with “Soumyajit Dutta” as a cohesive identity block (logo next to or above the name), without replacing the text.
+- Ensure the logo is responsive (keeps aspect ratio, no stretching/overflow on small screens) and includes appropriate English alt text, while keeping existing header elements (including the History/Calculator toggle) intact.
 
-**User-visible outcome:** Users can use a polished mobile-friendly scientific calculator, see “Soumyajit Dutta” in the UI, evaluate expressions with correct math behavior, view a locally generated step-by-step explanation for results, and review/clear a calculation history that persists in their browser across reloads.
+**User-visible outcome:** The app header shows the new logo alongside “Soumyajit Dutta” in both Calculator and History views, with the same premium light look and fully working header controls.

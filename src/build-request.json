@@ -1,197 +1,65 @@
 {
   "kind": "build_request",
-  "title": "Scientific calculator IC web app with browser history, local step-by-step solver, and premium light theme",
+  "title": "Add uploaded logo to header alongside “Soumyajit Dutta”",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Build a complete mobile-friendly Internet Computer web app (not a native Android APK) that presents a single-page scientific calculator experience and “behaves like an Android app” (app-shell style layout suitable for being added to home screen).",
+      "id": "REQ-9",
+      "text": "Add the user-uploaded logo image (file_00000000b77c72089c9effad0d4cec39.png) to the app’s static assets and render it in the calculator header alongside the existing “Soumyajit Dutta” text (do not replace the name), keeping the current premium white/light theme intact.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8"
+          "msg-1"
         ],
         "quotes": [
-          "Yes, please start building the full app now. I want the complete Internet Computer web app with the scientific calculator... and mobile-friendly layout."
+          "I want to add a logo",
+          "The logo should appear in the header at the top of the app, above or next to my name.",
+          "It should sit alongside “Soumyajit Dutta”, not replace it.",
+          "Keep the premium white/light theme intact.",
+          "Try again"
         ]
       },
       "acceptanceCriteria": [
-        "App runs as a responsive single-page UI optimized for mobile screens (no horizontal scrolling; buttons are tappable).",
-        "Layout uses an app-shell style container (header + main content) and feels usable as a home-screen-like web app.",
-        "No references to building/distributing a native APK."
+        "The uploaded image file is included in the frontend as a static asset and is referenced by the header UI.",
+        "The header continues to display “Soumyajit Dutta” exactly as text, with the logo placed next to it (or above it) within the header area.",
+        "Logo sizing is visually balanced with the header (not stretched), maintains aspect ratio, and does not cause layout overflow on small mobile screens.",
+        "The logo has an appropriate alt text for accessibility (in English).",
+        "Existing header elements (title, History/Calculator toggle) remain functional and visually consistent with the current premium light theme."
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Implement the scientific calculator UI with the provided button set and operations: AC, backspace, parentheses, sin, cos, tan, √, log, ln, x², x^y, digits, decimal point, ±, +, −, ×, ÷, π, e, factorial (!), and = for evaluation.",
+      "id": "REQ-10",
+      "text": "Update the header layout implementation in frontend/src/features/calculator/CalculatorPage.tsx to accommodate the added logo while preserving current spacing, typography, and overall header hierarchy.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2",
-          "msg-4",
-          "msg-6",
-          "msg-8"
+          "msg-1"
         ],
         "quotes": [
-          "I want you to integrate this calculator as a full Internet android (Caffeine) app with a premium white/light theme, history, and AI step solver. Make it fully functional and mobile-friendly.",
-          "...include all scientific calculator functions with history and step-by-step AI explanations.",
-          "...scientific calculator, history saved in the browser... All features should be fully functional.”"
+          "The logo should appear in the header at the top of the app, above or next to my name.",
+          "It should sit alongside “Soumyajit Dutta”, not replace it."
         ]
       },
       "acceptanceCriteria": [
-        "All listed buttons are present and functional.",
-        "Operator precedence and parentheses are respected for evaluation.",
-        "Factorial works for non-negative integers and returns an error state/message for invalid inputs (e.g., negative or non-integers).",
-        "The calculator does not use JavaScript eval for expression evaluation."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Implement calculation history saved only in the browser (local persistence). Provide UI to view history and clear it.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6",
-          "msg-8"
-        ],
-        "quotes": [
-          "The calculator history can be saved only in the browser; it does not need backend sync.",
-          "...history saved in the browser..."
-        ]
-      },
-      "acceptanceCriteria": [
-        "History persists across page reloads in the same browser profile.",
-        "History shows past calculations in order and is scrollable on mobile.",
-        "A clear-history control removes persisted history and updates the UI immediately."
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Add a local, rule-based “AI step solver” that produces a detailed step-by-step explanation for the current expression when evaluated, without calling any external AI APIs.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6",
-          "msg-8"
-        ],
-        "quotes": [
-          "For the AI step solver, I want a more detailed, rule-based step-by-step breakdown, generated locally without using any external AI APIs.",
-          "AI step solver with step-by-step explanations"
-        ]
-      },
-      "acceptanceCriteria": [
-        "After pressing '=', the UI shows a multi-step explanation that is more detailed than a single summary line (e.g., parsing/normalization, key simplifications, intermediate results, final result).",
-        "No network calls to third-party AI/LLM services are used to generate steps.",
-        "If the expression is invalid, the solver shows a helpful error explanation and does not crash the app."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Apply a premium white/light visual theme consistently across the app (typography, spacing, surfaces, button hierarchy, focus states) and ensure a polished, mobile-first layout.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6",
-          "msg-8"
-        ],
-        "quotes": [
-          "The app should have a white/light premium theme... and mobile-friendly layout."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Theme is predominantly light with premium styling (subtle shadows, clear hierarchy, consistent spacing).",
-        "Interactive states (hover/active/focus) are visible and accessible.",
-        "Mobile layout places display, keypad, history, and step-solver sections without crowding (usable on small screens)."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Display the name “Soumyajit Dutta” in the app UI in a clear, intentional location (e.g., header/title area) as part of the calculator page.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "The app should have a white/light premium theme, show my name ‘Soumyajit Dutta’..."
-        ]
-      },
-      "acceptanceCriteria": [
-        "The exact text “Soumyajit Dutta” is visible on the main screen.",
-        "Name styling matches the premium light theme and does not overlap other UI elements on mobile."
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Keep the Internet Computer backend canister minimal and functional for deployment (no backend persistence for history), ensuring the project compiles and runs as a complete IC app.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-6",
-          "msg-8"
-        ],
-        "quotes": [
-          "The calculator history can be saved only in the browser; it does not need backend sync.",
-          "I want the complete Internet Computer web app... All features should be fully functional."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend canister builds successfully and the overall project runs end-to-end as an Internet Computer app.",
-        "No backend endpoints are required for calculator history persistence.",
-        "No external databases or services are introduced."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Choose and apply one coherent, distinct visual direction for the premium light theme (colors, typography, component shapes) and enforce it consistently across all screens/components.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-8"
-        ],
-        "quotes": [
-          "...white/light premium theme..."
-        ]
-      },
-      "acceptanceCriteria": [
-        "A single consistent light-theme design system is used throughout (not a mix of unrelated styles).",
-        "The chosen palette does not rely on a blue+purple primary pairing unless explicitly required (it is not)."
+        "CalculatorPage header renders the logo and name together as a single cohesive identity block.",
+        "No regressions: the header still renders correctly in both Calculator view and History view, and the toggle still switches panels."
       ]
     }
   ],
   "constraints": [
-    "Use English for all user-facing text.",
-    "Do not use external AI/LLM APIs; the step-by-step solver must be generated locally.",
-    "History must be persisted only in the browser (no backend sync).",
-    "Respect the platform single-actor Motoko backend architecture.",
-    "Do not edit frontend files under the immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui."
+    "Use English for any user-facing text.",
+    "Do not remove or replace the “Soumyajit Dutta” text; the logo must be additional.",
+    "Preserve the existing premium white/light theme (no restyling or theme overhaul).",
+    "Frontend immutable paths must not be edited (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "Backend remains single-actor; do not add backend dependencies for the logo."
   ],
   "nonGoals": [
-    "Native Android APK generation or Play Store packaging.",
-    "Account-based history syncing across devices.",
-    "Third-party authentication providers other than Internet Identity.",
-    "Real-time features (websockets, chat) or push notifications."
+    "Do not add third-party image/CDN hosting for the logo.",
+    "Do not change PWA manifest icons unless explicitly requested.",
+    "Do not implement new calculator features unrelated to the header logo."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [
-      "Build a mobile-friendly Internet Computer web app scientific calculator with browser-saved history and a local rule-based step-by-step solver."
-    ],
-    "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Premium white/light theme",
-      "Mobile-first responsive layout",
-      "No external AI APIs; local rule-based explanations"
-    ],
-    "preferencesToRemove": [],
-    "miscToAdd": [
-      "Display name in UI: Soumyajit Dutta"
-    ],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

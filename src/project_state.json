@@ -1,14 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 5,
   "summary": "Build a mobile-friendly Internet Computer (Caffeine) web app that behaves like an Android app, featuring a fully functional scientific calculator with a premium white/light theme, browser-only history, and a local rule-based step-by-step \"AI\" solver; display the name \"Soumyajit Dutta\" in the UI.",
   "architectural_notes": [
     "Target platform is an Internet Computer web app built with Caffeine (web only; no native Android APK).",
     "History is stored locally in the browser (e.g., localStorage/IndexedDB); no backend persistence or cross-device sync.",
-    "Step-by-step solver must be generated locally via rule-based logic; do not call external AI APIs."
+    "Step-by-step solver must be generated locally via rule-based logic; do not call external AI APIs.",
+    "Header should support a user-provided logo asset displayed alongside the “Soumyajit Dutta” text without altering the premium light theme styling."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Caffeine build/deploy encountered a configuration error during the logo update attempt; requires retry or environment/config investigation."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-build-a-complete-mobile-friendly-internet-computer-web-app-not-a-native-android-apk-that-presents-a-single-page-scientific-calculator-experience-and-behaves-like-an-android-app-app-shell-style-layout-suitable-for-being-added-to-home-screen",
@@ -65,6 +68,22 @@
         "REQ-8"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-logo-image-file-00000000b77c72089c9effad0d4cec39-png-to-the-app-s-static-assets-and-render-it-in-the-calculator-header-alongside-the-existing-soumyajit-dutta-text-do-not-replace-the-name-keeping-the-current-premium-white-light-theme-intact",
+      "title": "Add the user-uploaded logo image (file_00000000b77c72089c9effad0d4cec39.png) to the app’s static assets and render it in the calculator header alongside the existing “Soumyajit Dutta” text (do not replace the name), keeping the current premium white/light theme intact.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-header-layout-implementation-in-frontend-src-features-calculator-calculatorpage-tsx-to-accommodate-the-added-logo-while-preserving-current-spacing-typography-and-overall-header-hierarchy",
+      "title": "Update the header layout implementation in frontend/src/features/calculator/CalculatorPage.tsx to accommodate the added logo while preserving current spacing, typography, and overall header hierarchy.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -105,6 +124,12 @@
         "REQ-7"
       ],
       "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add a user-provided logo image to the app header alongside “Soumyajit Dutta” while preserving the premium white/light theme",
+      "reqIds": [],
+      "status": "in_progress"
     }
   ],
   "gameProjectType": "none",

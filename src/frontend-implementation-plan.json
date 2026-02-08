@@ -1,206 +1,43 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "IC Scientific Calculator (mobile app-shell, local history, rule-based step solver, premium light theme)",
+  "title": "Add static logo image to calculator header alongside “Soumyajit Dutta”",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Deliver a mobile-friendly single-page scientific calculator UI with an app-shell layout suitable for home-screen use.",
+      "id": "REQ-9",
+      "summary": "Add the uploaded logo as a static frontend asset and render it in the calculator header alongside the existing “Soumyajit Dutta” text while preserving the premium light theme.",
       "acceptanceCriteria": [
-        "App runs as a responsive single-page UI optimized for mobile screens (no horizontal scrolling; buttons are tappable).",
-        "Layout uses an app-shell style container (header + main content) and feels usable as a home-screen-like web app.",
-        "No references to building/distributing a native APK."
+        "The uploaded image file is included in the frontend as a static asset and is referenced by the header UI.",
+        "The header continues to display “Soumyajit Dutta” exactly as text, with the logo placed next to it (or above it) within the header area.",
+        "Logo sizing is visually balanced with the header (not stretched), maintains aspect ratio, and does not cause layout overflow on small mobile screens.",
+        "The logo has an appropriate alt text for accessibility (in English).",
+        "Existing header elements (title, History/Calculator toggle) remain functional and visually consistent with the current premium light theme."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/public/assets/file_00000000b77c72089c9effad0d4cec39.png",
           "operation": "create",
-          "description": "Create the single-page app-shell layout (header + main) that hosts the calculator experience and responsive mobile-first structure (no horizontal scrolling, tappable controls)."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Add PWA/home-screen-friendly metadata (e.g., manifest link and mobile web app meta) while keeping the app as a web app (no APK references)."
-        },
-        {
-          "path": "frontend/public/manifest.webmanifest",
-          "operation": "create",
-          "description": "Add a minimal web app manifest to support add-to-home-screen behavior (app name, theme colors, display mode)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Implement a full scientific calculator keypad and safe expression evaluation (no JavaScript eval), including precedence, parentheses, and factorial validation.",
-      "acceptanceCriteria": [
-        "All listed buttons are present and functional.",
-        "Operator precedence and parentheses are respected for evaluation.",
-        "Factorial works for non-negative integers and returns an error state/message for invalid inputs (e.g., negative or non-integers).",
-        "The calculator does not use JavaScript eval for expression evaluation."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/calculator/CalculatorPage.tsx",
-          "operation": "create",
-          "description": "Implement the calculator screen UI (display + keypad) and wire button interactions for AC, backspace, parentheses, trig, roots/logs/powers, constants, factorial, sign toggle, operators, and '='."
-        },
-        {
-          "path": "frontend/src/features/calculator/CalculatorKeypad.tsx",
-          "operation": "create",
-          "description": "Create a mobile-optimized keypad grid with the complete required button set; if using shadcn-ui button primitives for consistent states, verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/features/calculator/CalculatorDisplay.tsx",
-          "operation": "create",
-          "description": "Create the expression/result display component with clear error presentation and accessibility-friendly text sizing for mobile."
-        },
-        {
-          "path": "frontend/src/features/calculator/useCalculator.ts",
-          "operation": "create",
-          "description": "Implement calculator state management (current expression, result/error state, last evaluation) and map UI actions to parser/evaluator calls without using eval."
-        },
-        {
-          "path": "frontend/src/lib/calc/tokenize.ts",
-          "operation": "create",
-          "description": "Add a tokenizer for the calculator expression syntax (numbers, operators, functions, parentheses, constants) to support safe parsing/evaluation."
-        },
-        {
-          "path": "frontend/src/lib/calc/parse.ts",
-          "operation": "create",
-          "description": "Add a parser (e.g., shunting-yard to AST/RPN) that enforces precedence/associativity and parentheses handling for the supported operators and functions."
-        },
-        {
-          "path": "frontend/src/lib/calc/evaluate.ts",
-          "operation": "create",
-          "description": "Add a deterministic evaluator over the parsed representation supporting sin/cos/tan, √, log/ln, x², x^y, π, e, ±, and factorial with input validation and error reporting."
-        },
-        {
-          "path": "frontend/src/lib/calc/math.ts",
-          "operation": "create",
-          "description": "Implement math helpers (e.g., factorial with integer/non-negative validation and numeric safety checks) used by the evaluator."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Add browser-only persisted calculation history with UI to view and clear it.",
-      "acceptanceCriteria": [
-        "History persists across page reloads in the same browser profile.",
-        "History shows past calculations in order and is scrollable on mobile.",
-        "A clear-history control removes persisted history and updates the UI immediately."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/features/history/useLocalHistory.ts",
-          "operation": "create",
-          "description": "Implement a localStorage-backed history store (append entries on successful evaluation, load on start, clear on demand) with stable ordering."
-        },
-        {
-          "path": "frontend/src/features/history/HistoryPanel.tsx",
-          "operation": "create",
-          "description": "Create a mobile-friendly, scrollable history UI with a clear-history control; if using shadcn-ui scroll/accordion/sheet primitives for layout, verify the component's usage instructions before implementing."
+          "description": "Add the provided uploaded logo image to the app’s public static assets so it can be referenced by the header UI."
         },
         {
           "path": "frontend/src/features/calculator/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "Wire evaluation results into the local history store and render the history panel in the calculator layout without crowding the keypad on small screens."
+          "description": "Reference the static logo image from the header and render it alongside the existing “Soumyajit Dutta” text (do not replace the name). Constrain size (e.g., fixed height with object-contain, no stretching), include an English alt text, and ensure the layout remains responsive without overflow on small screens while keeping existing header behavior and premium light styling intact."
         }
       ]
     },
     {
-      "id": "REQ-4",
-      "summary": "Provide a local rule-based step-by-step solver that explains evaluation results without external AI/LLM calls and handles invalid expressions gracefully.",
+      "id": "REQ-10",
+      "summary": "Adjust the CalculatorPage header layout to accommodate the logo while preserving spacing, typography, and header hierarchy across Calculator and History views.",
       "acceptanceCriteria": [
-        "After pressing '=', the UI shows a multi-step explanation that is more detailed than a single summary line (e.g., parsing/normalization, key simplifications, intermediate results, final result).",
-        "No network calls to third-party AI/LLM services are used to generate steps.",
-        "If the expression is invalid, the solver shows a helpful error explanation and does not crash the app."
+        "CalculatorPage header renders the logo and name together as a single cohesive identity block.",
+        "No regressions: the header still renders correctly in both Calculator view and History view, and the toggle still switches panels."
       ],
       "file_operations": [
-        {
-          "path": "frontend/src/lib/calc/stepSolver.ts",
-          "operation": "create",
-          "description": "Implement a local, rule-based step generator that produces multi-step explanations (tokenization/parsing summary, normalization, precedence-based reductions, intermediate results, final result) and returns helpful errors for invalid inputs."
-        },
-        {
-          "path": "frontend/src/features/steps/StepsPanel.tsx",
-          "operation": "create",
-          "description": "Create a UI panel to render step-by-step explanations clearly on mobile (collapsible/scrollable if needed); if using shadcn-ui typography/accordion primitives, verify the component's usage instructions before implementing."
-        },
         {
           "path": "frontend/src/features/calculator/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "On '=', invoke the local step solver alongside evaluation and render the resulting multi-step explanation (or error explanation) in the calculator screen."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Apply a polished premium light theme across typography, spacing, surfaces, and interactive states with a mobile-first layout.",
-      "acceptanceCriteria": [
-        "Theme is predominantly light with premium styling (subtle shadows, clear hierarchy, consistent spacing).",
-        "Interactive states (hover/active/focus) are visible and accessible.",
-        "Mobile layout places display, keypad, history, and step-solver sections without crowding (usable on small screens)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "create",
-          "description": "Define a premium light theme via CSS variables and Tailwind base styles (surfaces, borders, shadows, typography) including visible focus/active states and safe-area-friendly spacing."
-        },
-        {
-          "path": "frontend/src/features/calculator/CalculatorKeypad.tsx",
-          "operation": "modify",
-          "description": "Tune button sizing, spacing, and pressed/focus states for mobile tappability and clear hierarchy (primary actions vs secondary scientific functions)."
-        },
-        {
-          "path": "frontend/src/features/history/HistoryPanel.tsx",
-          "operation": "modify",
-          "description": "Ensure the history list is readable, scrollable, and visually consistent with the premium light theme on small screens."
-        },
-        {
-          "path": "frontend/src/features/steps/StepsPanel.tsx",
-          "operation": "modify",
-          "description": "Ensure step text hierarchy (titles, intermediate steps, final result) is clear and consistent with the premium light theme."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Display the name “Soumyajit Dutta” prominently in the calculator UI header/title area without impacting mobile layout.",
-      "acceptanceCriteria": [
-        "The exact text “Soumyajit Dutta” is visible on the main screen.",
-        "Name styling matches the premium light theme and does not overlap other UI elements on mobile."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a header/title area that includes the exact text “Soumyajit Dutta” with premium light styling and responsive spacing to prevent overlap on mobile."
-        }
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "summary": "Adopt one coherent premium light design direction (palette, typography, shapes) and enforce it consistently, avoiding a blue+purple primary pairing.",
-      "acceptanceCriteria": [
-        "A single consistent light-theme design system is used throughout (not a mix of unrelated styles).",
-        "The chosen palette does not rely on a blue+purple primary pairing unless explicitly required (it is not)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Set a single cohesive light design system (neutral-forward palette with a distinct non-blue+purple primary accent, consistent radii/shadows/typography) and apply globally via CSS variables used by Tailwind/shadcn styling."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Align Tailwind theme extensions (e.g., radius/shadow tokens) with the chosen premium light design direction to keep shapes and elevation consistent across components."
-        },
-        {
-          "path": "frontend/src/features/calculator/CalculatorPage.tsx",
-          "operation": "modify",
-          "description": "Standardize surfaces/sections (display, keypad, history, steps) to the same design language (consistent cards/panels, spacing scale, and hierarchy) across the single-page UI."
+          "description": "Update the header structure/classes to group the logo + “Soumyajit Dutta” as a cohesive identity block within the existing header, preserving spacing/typography and ensuring the History/Calculator toggle remains aligned and fully functional in both views."
         }
       ]
     }
