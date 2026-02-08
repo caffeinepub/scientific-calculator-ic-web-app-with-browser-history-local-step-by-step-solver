@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build a mobile-friendly Internet Computer (Caffeine) web app that behaves like an Android app, featuring a fully functional scientific calculator with a premium white/light theme, browser-only history, and a local rule-based step-by-step \"AI\" solver; display the name \"Soumyajit Dutta\" in the UI.",
+  "architectural_notes": [
+    "Target platform is an Internet Computer web app built with Caffeine (web only; no native Android APK).",
+    "History is stored locally in the browser (e.g., localStorage/IndexedDB); no backend persistence or cross-device sync.",
+    "Step-by-step solver must be generated locally via rule-based logic; do not call external AI APIs."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-build-a-complete-mobile-friendly-internet-computer-web-app-not-a-native-android-apk-that-presents-a-single-page-scientific-calculator-experience-and-behaves-like-an-android-app-app-shell-style-layout-suitable-for-being-added-to-home-screen",
+      "title": "Build a complete mobile-friendly Internet Computer web app (not a native Android APK) that presents a single-page scientific calculator experience and “behaves like an Android app” (app-shell style layout suitable for being added to home screen).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-scientific-calculator-ui-with-the-provided-button-set-and-operations-ac-backspace-parentheses-sin-cos-tan-log-ln-x-x-y-digits-decimal-point-e-factorial-and-for-evaluation",
+      "title": "Implement the scientific calculator UI with the provided button set and operations: AC, backspace, parentheses, sin, cos, tan, √, log, ln, x², x^y, digits, decimal point, ±, +, −, ×, ÷, π, e, factorial (!), and = for evaluation.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-calculation-history-saved-only-in-the-browser-local-persistence-provide-ui-to-view-history-and-clear-it",
+      "title": "Implement calculation history saved only in the browser (local persistence). Provide UI to view history and clear it.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-local-rule-based-ai-step-solver-that-produces-a-detailed-step-by-step-explanation-for-the-current-expression-when-evaluated-without-calling-any-external-ai-apis",
+      "title": "Add a local, rule-based “AI step solver” that produces a detailed step-by-step explanation for the current expression when evaluated, without calling any external AI APIs.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-premium-white-light-visual-theme-consistently-across-the-app-typography-spacing-surfaces-button-hierarchy-focus-states-and-ensure-a-polished-mobile-first-layout",
+      "title": "Apply a premium white/light visual theme consistently across the app (typography, spacing, surfaces, button hierarchy, focus states) and ensure a polished, mobile-first layout.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-name-soumyajit-dutta-in-the-app-ui-in-a-clear-intentional-location-e-g-header-title-area-as-part-of-the-calculator-page",
+      "title": "Display the name “Soumyajit Dutta” in the app UI in a clear, intentional location (e.g., header/title area) as part of the calculator page.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-choose-and-apply-one-coherent-distinct-visual-direction-for-the-premium-light-theme-colors-typography-component-shapes-and-enforce-it-consistently-across-all-screens-components",
+      "title": "Choose and apply one coherent, distinct visual direction for the premium light theme (colors, typography, component shapes) and enforce it consistently across all screens/components.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create an Internet Computer (Caffeine) mobile-friendly web app shell for the calculator (PWA-like UX, not native APK)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Integrate a fully functional scientific calculator UI with all scientific functions and mobile-friendly layout",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement browser-only calculation history (persist locally, no backend sync)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add a detailed local rule-based step-by-step solver (no external AI APIs) to explain calculations",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Apply a premium white/light theme and display the name \"Soumyajit Dutta\" in the app UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Keep the Internet Computer backend canister minimal and functional for deployment (no backend persistence for history), ensuring the project compiles and runs as a complete IC app.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Scientific calculator IC web app with browser history, local step-by-step solver, and premium light theme",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

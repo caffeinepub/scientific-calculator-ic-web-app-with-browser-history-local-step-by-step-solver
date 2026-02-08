@@ -1,0 +1,19 @@
+{
+  "frontend/src/index.css": "Premium light theme with warm neutral palette and emerald accent, using OKLCH color system with safe-area support for mobile devices.",
+  "frontend/index.html": "HTML entry point with PWA meta tags for mobile app-like experience and manifest link.",
+  "frontend/public/manifest.webmanifest": "Web app manifest for add-to-home-screen functionality with standalone display mode.",
+  "frontend/src/App.tsx": "Root application component that renders the calculator page.",
+  "frontend/src/features/calculator/CalculatorPage.tsx": "Main calculator page with header showing \"Soumyajit Dutta\", display, keypad, history toggle, steps panel, and footer with attribution.",
+  "frontend/src/features/calculator/CalculatorDisplay.tsx": "Calculator display component showing current expression, result, and error messages with premium styling.",
+  "frontend/src/features/calculator/CalculatorKeypad.tsx": "Scientific calculator keypad with 8x4 grid of buttons including all scientific functions, styled with variant-based theming.",
+  "frontend/src/features/calculator/useCalculator.ts": "Calculator state management hook handling display, result, error, and button interactions with tokenize/parse/evaluate pipeline.",
+  "frontend/src/lib/calc/tokenize.ts": "Tokenizer that converts calculator expression strings into typed tokens (numbers, operators, functions, constants, parentheses).",
+  "frontend/src/lib/calc/parse.ts": "Recursive descent parser that builds an AST from tokens with proper operator precedence and associativity.",
+  "frontend/src/lib/calc/evaluate.ts": "AST evaluator that computes numeric results for all supported operations and functions with error handling.",
+  "frontend/src/lib/calc/math.ts": "Math utility functions including factorial with validation for integers, non-negative values, and overflow protection.",
+  "frontend/src/lib/calc/stepSolver.ts": "Local rule-based step generator that produces detailed multi-step explanations of expression evaluation without external APIs.",
+  "frontend/src/features/history/useLocalHistory.ts": "Custom hook managing calculation history in localStorage with add, load, and clear operations.",
+  "frontend/src/features/history/HistoryPanel.tsx": "History view component with scrollable list of past calculations and clear button.",
+  "frontend/src/features/steps/StepsPanel.tsx": "Collapsible accordion panel displaying step-by-step solution explanations with numbered steps.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks; intentionally minimal as calculator requires no backend queries."
+}
