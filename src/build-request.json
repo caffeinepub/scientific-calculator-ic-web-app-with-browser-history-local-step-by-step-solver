@@ -1,62 +1,76 @@
 {
   "kind": "build_request",
-  "title": "Add uploaded logo to header alongside “Soumyajit Dutta”",
-  "priority": "normal",
+  "title": "Add UPI payment/donation section below Steps Panel and implement premium unlock for step solver",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Add the user-uploaded logo image (file_00000000b77c72089c9effad0d4cec39.png) to the app’s static assets and render it in the calculator header alongside the existing “Soumyajit Dutta” text (do not replace the name), keeping the current premium white/light theme intact.",
+      "id": "REQ-11",
+      "text": "Add a new “Premium” section in the calculator UI that renders directly below the Step-by-Step Solution panel (and only on the Calculator view, not the History view). This section must include two buttons with the exact UPI deep links provided: (1) “Unlock Premium AI Step Solver (₹50)” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=AI Premium Feature&am=50&cu=INR` and (2) “Donate via UPI” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=Donation&cu=INR`.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "recent-messages"
         ],
         "quotes": [
-          "I want to add a logo",
-          "The logo should appear in the header at the top of the app, above or next to my name.",
-          "It should sit alongside “Soumyajit Dutta”, not replace it.",
-          "Keep the premium white/light theme intact.",
-          "Try again"
+          "Placement: “I want the UPI buttons to appear below the AI Step Solver in the calculator UI.”"
         ]
       },
       "acceptanceCriteria": [
-        "The uploaded image file is included in the frontend as a static asset and is referenced by the header UI.",
-        "The header continues to display “Soumyajit Dutta” exactly as text, with the logo placed next to it (or above it) within the header area.",
-        "Logo sizing is visually balanced with the header (not stretched), maintains aspect ratio, and does not cause layout overflow on small mobile screens.",
-        "The logo has an appropriate alt text for accessibility (in English).",
-        "Existing header elements (title, History/Calculator toggle) remain functional and visually consistent with the current premium light theme."
+        "When Step-by-Step Solution is visible (steps exist), a Premium section appears immediately below it in the Calculator view.",
+        "The “Unlock Premium AI Step Solver (₹50)” button opens the exact UPI URL `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=AI Premium Feature&am=50&cu=INR` in a new tab/window.",
+        "The “Donate via UPI” button opens the exact UPI URL `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=Donation&cu=INR` in a new tab/window.",
+        "The Premium section styling matches the existing premium light theme (bg-card/border-border/rounded/shadow-sm conventions) and is mobile-friendly."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Update the header layout implementation in frontend/src/features/calculator/CalculatorPage.tsx to accommodate the added logo while preserving current spacing, typography, and overall header hierarchy.",
+      "id": "REQ-12",
+      "text": "Implement an in-app premium unlock state that is triggered by the UPI unlock flow and persists locally in the browser (no backend verification). After the user initiates the unlock payment, the UI must provide a clear in-app confirmation action to mark premium as unlocked (do not rely only on an alert).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "recent-messages"
         ],
         "quotes": [
-          "The logo should appear in the header at the top of the app, above or next to my name.",
-          "It should sit alongside “Soumyajit Dutta”, not replace it."
+          "Unlock behavior: “After payment, the app should actually unlock the premium AI step solver—not just show a thank‑you alert.”"
         ]
       },
       "acceptanceCriteria": [
-        "CalculatorPage header renders the logo and name together as a single cohesive identity block.",
-        "No regressions: the header still renders correctly in both Calculator view and History view, and the toggle still switches panels."
+        "Premium unlock state persists across page reloads using browser-only storage (e.g., localStorage).",
+        "After initiating the UPI unlock payment flow, the app presents a user-driven confirmation to complete the unlock (e.g., “I have paid, unlock premium”).",
+        "Once premium is unlocked, the UI clearly indicates premium status (e.g., label/badge/text) and the unlock button is replaced/disabled to prevent repeated unlock prompts in normal use.",
+        "No backend canister calls are introduced for payment verification or state storage."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Gate the Step-by-Step Solution experience based on premium status: when premium is NOT unlocked, the Steps panel must show a limited/basic step view and a visible prompt indicating that premium unlock reveals the full/detailed step solver; when premium IS unlocked, the Steps panel must show the full detailed step list.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "After payment, the app should actually unlock the premium AI step solver"
+        ]
+      },
+      "acceptanceCriteria": [
+        "With premium locked, the Steps panel displays only a subset of steps (basic view) and an explicit message in English indicating that premium unlock reveals the full/detailed steps.",
+        "With premium unlocked, the Steps panel displays the complete generated steps list.",
+        "Toggling premium state (via the confirmation flow) updates the Steps panel immediately without requiring a reload.",
+        "Existing step generation remains local/rule-based and does not call any external AI APIs."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text.",
-    "Do not remove or replace the “Soumyajit Dutta” text; the logo must be additional.",
-    "Preserve the existing premium white/light theme (no restyling or theme overhaul).",
-    "Frontend immutable paths must not be edited (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
-    "Backend remains single-actor; do not add backend dependencies for the logo."
+    "Do not attempt to programmatically verify UPI payment completion; unlocking is a local UI state only.",
+    "Do not add external AI APIs or any network-based AI integrations.",
+    "Do not modify any files under frontend/src/components/ui or other immutable paths listed in SYSTEM_CONTEXT.",
+    "Keep the backend as a single Motoko actor; do not introduce backend persistence for premium/unlock or history."
   ],
   "nonGoals": [
-    "Do not add third-party image/CDN hosting for the logo.",
-    "Do not change PWA manifest icons unless explicitly requested.",
-    "Do not implement new calculator features unrelated to the header logo."
+    "Implementing secure payment verification or server-side receipt validation for UPI payments.",
+    "Adding any third-party authentication beyond the existing Internet Identity setup.",
+    "Changing calculator math/evaluation behavior beyond what is necessary to support premium-gated step display."
   ],
   "imageRequirements": {
     "required": [],

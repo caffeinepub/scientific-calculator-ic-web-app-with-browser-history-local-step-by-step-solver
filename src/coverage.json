@@ -1,35 +1,53 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-08T21:30:36.184Z",
+  "generatedAt": "2026-02-09T03:27:56.326Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Update the header layout implementation in frontend/src/features/calculator/CalculatorPage.tsx to accommodate the added logo while preserving current spacing, typography, and overall header hierarchy.",
+        "id": "REQ-11",
+        "summary": "Add a new “Premium” section in the calculator UI that renders directly below the Step-by-Step Solution panel (and only on the Calculator view, not the History view). This section must include two buttons with the exact UPI deep links provided: (1) “Unlock Premium AI Step Solver (₹50)” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=AI Premium Feature&am=50&cu=INR` and (2) “Donate via UPI” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=Donation&cu=INR`.",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/features/calculator/PremiumSection.tsx",
           "frontend/src/features/calculator/CalculatorPage.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/features/calculator/PremiumSection.tsx",
           "frontend/src/features/calculator/CalculatorPage.tsx"
         ]
       },
       {
-        "id": "REQ-9",
-        "summary": "Add the user-uploaded logo image (file_00000000b77c72089c9effad0d4cec39.png) to the app’s static assets and render it in the calculator header alongside the existing “Soumyajit Dutta” text (do not replace the name), keeping the current premium white/light theme intact.",
+        "id": "REQ-12",
+        "summary": "Implement an in-app premium unlock state that is triggered by the UPI unlock flow and persists locally in the browser (no backend verification). After the user initiates the unlock payment, the UI must provide a clear in-app confirmation action to mark premium as unlocked (do not rely only on an alert).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/file_00000000b77c72089c9effad0d4cec39.png",
+          "frontend/src/features/premium/usePremium.ts",
+          "frontend/src/features/calculator/PremiumSection.tsx",
           "frontend/src/features/calculator/CalculatorPage.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/features/premium/usePremium.ts",
+          "frontend/src/features/calculator/PremiumSection.tsx",
+          "frontend/src/features/calculator/CalculatorPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Gate the Step-by-Step Solution experience based on premium status: when premium is NOT unlocked, the Steps panel must show a limited/basic step view and a visible prompt indicating that premium unlock reveals the full/detailed step solver; when premium IS unlocked, the Steps panel must show the full detailed step list.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/steps/StepsPanel.tsx",
+          "frontend/src/features/calculator/CalculatorPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/steps/StepsPanel.tsx",
           "frontend/src/features/calculator/CalculatorPage.tsx"
         ]
       }
@@ -37,11 +55,13 @@
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/src/features/calculator/CalculatorPage.tsx",
+    "frontend/src/features/calculator/PremiumSection.tsx",
+    "frontend/src/features/premium/usePremium.ts",
+    "frontend/src/features/steps/StepsPanel.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

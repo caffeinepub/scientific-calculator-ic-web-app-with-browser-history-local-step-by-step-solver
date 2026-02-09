@@ -3,13 +3,15 @@ import { CalculatorDisplay } from './CalculatorDisplay';
 import { CalculatorKeypad } from './CalculatorKeypad';
 import { HistoryPanel } from '../history/HistoryPanel';
 import { StepsPanel } from '../steps/StepsPanel';
+import { PremiumSection } from './PremiumSection';
 import { useCalculator } from './useCalculator';
 import { useLocalHistory } from '../history/useLocalHistory';
-import { Calculator } from 'lucide-react';
+import { usePremium } from '../premium/usePremium';
 
 export function CalculatorPage() {
   const { display, result, error, handleButtonClick, clearAll } = useCalculator();
   const { history, addToHistory, clearHistory } = useLocalHistory();
+  const { isPremium, unlockPremium } = usePremium();
   const [steps, setSteps] = useState<string[]>([]);
   const [showHistory, setShowHistory] = useState(false);
 
@@ -51,7 +53,12 @@ export function CalculatorPage() {
           <>
             <CalculatorDisplay display={display} result={result} error={error} />
             <CalculatorKeypad onButtonClick={handleButtonClick} onCalculate={handleCalculate} />
-            {steps.length > 0 && <StepsPanel steps={steps} />}
+            {steps.length > 0 && (
+              <>
+                <StepsPanel steps={steps} isPremium={isPremium} />
+                <PremiumSection isPremium={isPremium} onUnlock={unlockPremium} />
+              </>
+            )}
           </>
         )}
       </main>

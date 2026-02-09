@@ -1,17 +1,19 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Build a mobile-friendly Internet Computer (Caffeine) web app that behaves like an Android app, featuring a fully functional scientific calculator with a premium white/light theme, browser-only history, and a local rule-based step-by-step \"AI\" solver; display the name \"Soumyajit Dutta\" in the UI.",
+  "projectStateVersion": 7,
+  "summary": "Build a mobile-friendly Internet Computer (Caffeine) web app that behaves like an Android app, featuring a fully functional scientific calculator with a premium white/light theme, browser-only history, and a local rule-based step-by-step solver; display the name \"Soumyajit Dutta\" in the UI; add a UPI-based premium unlock flow that reveals an enhanced/premium step-solver experience after payment.",
   "architectural_notes": [
     "Target platform is an Internet Computer web app built with Caffeine (web only; no native Android APK).",
     "History is stored locally in the browser (e.g., localStorage/IndexedDB); no backend persistence or cross-device sync.",
     "Step-by-step solver must be generated locally via rule-based logic; do not call external AI APIs.",
-    "Header should support a user-provided logo asset displayed alongside the “Soumyajit Dutta” text without altering the premium light theme styling."
+    "Header should support a user-provided logo asset displayed alongside the “Soumyajit Dutta” text without altering the premium light theme styling.",
+    "Premium unlock must be implemented client-side (no reliable UPI payment verification in-app via deep link); store unlock state locally (e.g., localStorage/IndexedDB) and treat it as non-secure/UX-only unless a real verification backend is added."
   ],
   "known_issues": [
-    "Caffeine build/deploy encountered a configuration error during the logo update attempt; requires retry or environment/config investigation."
+    "Caffeine build/deploy encountered a configuration error during the logo update attempt; requires retry or environment/config investigation.",
+    "UPI deep-link flow cannot be programmatically verified as paid from within the browser; premium unlocking based on click/return is not secure and may be inaccurate."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-build-a-complete-mobile-friendly-internet-computer-web-app-not-a-native-android-apk-that-presents-a-single-page-scientific-calculator-experience-and-behaves-like-an-android-app-app-shell-style-layout-suitable-for-being-added-to-home-screen",
@@ -84,6 +86,30 @@
         "REQ-10"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-a-new-premium-section-in-the-calculator-ui-that-renders-directly-below-the-step-by-step-solution-panel-and-only-on-the-calculator-view-not-the-history-view-this-section-must-include-two-buttons-with-the-exact-upi-deep-links-provided-1-unlock-premium-ai-step-solver-50-opening-upi-pay-pa-soumya83918-ptyes-pn-soumyajit-dutta-tn-ai-premium-feature-am-50-cu-inr-and-2-donate-via-upi-opening-upi-pay-pa-soumya83918-ptyes-pn-soumyajit-dutta-tn-donation-cu-inr",
+      "title": "Add a new “Premium” section in the calculator UI that renders directly below the Step-by-Step Solution panel (and only on the Calculator view, not the History view). This section must include two buttons with the exact UPI deep links provided: (1) “Unlock Premium AI Step Solver (₹50)” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=AI Premium Feature&am=50&cu=INR` and (2) “Donate via UPI” opening `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=Donation&cu=INR`.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-in-app-premium-unlock-state-that-is-triggered-by-the-upi-unlock-flow-and-persists-locally-in-the-browser-no-backend-verification-after-the-user-initiates-the-unlock-payment-the-ui-must-provide-a-clear-in-app-confirmation-action-to-mark-premium-as-unlocked-do-not-rely-only-on-an-alert",
+      "title": "Implement an in-app premium unlock state that is triggered by the UPI unlock flow and persists locally in the browser (no backend verification). After the user initiates the unlock payment, the UI must provide a clear in-app confirmation action to mark premium as unlocked (do not rely only on an alert).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-gate-the-step-by-step-solution-experience-based-on-premium-status-when-premium-is-not-unlocked-the-steps-panel-must-show-a-limited-basic-step-view-and-a-visible-prompt-indicating-that-premium-unlock-reveals-the-full-detailed-step-solver-when-premium-is-unlocked-the-steps-panel-must-show-the-full-detailed-step-list",
+      "title": "Gate the Step-by-Step Solution experience based on premium status: when premium is NOT unlocked, the Steps panel must show a limited/basic step view and a visible prompt indicating that premium unlock reveals the full/detailed step solver; when premium IS unlocked, the Steps panel must show the full detailed step list.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -130,6 +156,12 @@
       "summary": "Add a user-provided logo image to the app header alongside “Soumyajit Dutta” while preserving the premium white/light theme",
       "reqIds": [],
       "status": "in_progress"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add a UPI payment/donation section below the AI Step Solver and implement an in-app premium unlock state that enables the premium step solver after payment",
+      "reqIds": [],
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",

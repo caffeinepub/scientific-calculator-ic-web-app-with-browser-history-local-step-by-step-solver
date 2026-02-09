@@ -1,43 +1,76 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add static logo image to calculator header alongside “Soumyajit Dutta”",
+  "title": "UPI Premium section + local premium unlock gating for step solver",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Add the uploaded logo as a static frontend asset and render it in the calculator header alongside the existing “Soumyajit Dutta” text while preserving the premium light theme.",
+      "id": "REQ-11",
+      "summary": "Add a Premium section under the Step-by-Step Solution panel on the Calculator view with two UPI deep-link buttons.",
       "acceptanceCriteria": [
-        "The uploaded image file is included in the frontend as a static asset and is referenced by the header UI.",
-        "The header continues to display “Soumyajit Dutta” exactly as text, with the logo placed next to it (or above it) within the header area.",
-        "Logo sizing is visually balanced with the header (not stretched), maintains aspect ratio, and does not cause layout overflow on small mobile screens.",
-        "The logo has an appropriate alt text for accessibility (in English).",
-        "Existing header elements (title, History/Calculator toggle) remain functional and visually consistent with the current premium light theme."
+        "When Step-by-Step Solution is visible (steps exist), a Premium section appears immediately below it in the Calculator view.",
+        "The “Unlock Premium AI Step Solver (₹50)” button opens the exact UPI URL `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=AI Premium Feature&am=50&cu=INR` in a new tab/window.",
+        "The “Donate via UPI” button opens the exact UPI URL `upi://pay?pa=soumya83918@ptyes&pn=Soumyajit Dutta&tn=Donation&cu=INR` in a new tab/window.",
+        "The Premium section styling matches the existing premium light theme (bg-card/border-border/rounded/shadow-sm conventions) and is mobile-friendly."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/file_00000000b77c72089c9effad0d4cec39.png",
+          "path": "frontend/src/features/calculator/PremiumSection.tsx",
           "operation": "create",
-          "description": "Add the provided uploaded logo image to the app’s public static assets so it can be referenced by the header UI."
+          "description": "Create a Premium section card UI rendered beneath the steps panel, containing two primary actions: (1) an anchor/button that opens the exact UPI unlock deep link in a new tab/window, and (2) an anchor/button that opens the exact UPI donation deep link in a new tab/window. Use existing shadcn-ui styling conventions (e.g., Button) for consistency; verify the component's usage instructions before implementing."
         },
         {
           "path": "frontend/src/features/calculator/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "Reference the static logo image from the header and render it alongside the existing “Soumyajit Dutta” text (do not replace the name). Constrain size (e.g., fixed height with object-contain, no stretching), include an English alt text, and ensure the layout remains responsive without overflow on small screens while keeping existing header behavior and premium light styling intact."
+          "description": "Wire the new PremiumSection to render only on the Calculator view (i.e., not when History is shown) and only when steps are present, placing it directly below the existing StepsPanel. Ensure layout spacing remains mobile-friendly and consistent with bg-card/border-border/rounded/shadow-sm conventions."
         }
       ]
     },
     {
-      "id": "REQ-10",
-      "summary": "Adjust the CalculatorPage header layout to accommodate the logo while preserving spacing, typography, and header hierarchy across Calculator and History views.",
+      "id": "REQ-12",
+      "summary": "Implement a local-only premium unlock state with a user-driven confirmation action after initiating the UPI unlock flow.",
       "acceptanceCriteria": [
-        "CalculatorPage header renders the logo and name together as a single cohesive identity block.",
-        "No regressions: the header still renders correctly in both Calculator view and History view, and the toggle still switches panels."
+        "Premium unlock state persists across page reloads using browser-only storage (e.g., localStorage).",
+        "After initiating the UPI unlock payment flow, the app presents a user-driven confirmation to complete the unlock (e.g., “I have paid, unlock premium”).",
+        "Once premium is unlocked, the UI clearly indicates premium status (e.g., label/badge/text) and the unlock button is replaced/disabled to prevent repeated unlock prompts in normal use.",
+        "No backend canister calls are introduced for payment verification or state storage."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/features/premium/usePremium.ts",
+          "operation": "create",
+          "description": "Add a small React hook that manages a boolean premiumUnlocked state backed by localStorage (load on mount, write on change) and exposes actions to mark unlocked and optionally reset for development/testing. Keep it browser-only with no network calls."
+        },
+        {
+          "path": "frontend/src/features/calculator/PremiumSection.tsx",
+          "operation": "modify",
+          "description": "Implement the unlock interaction flow: after the user clicks the UPI unlock deep link, show a clear in-app confirmation control (e.g., a secondary button labeled “I have paid, unlock premium”) that calls into the local premium state setter. When premium is unlocked, replace/disable the unlock prompt and show a clear premium status indicator. Use existing shadcn-ui components (e.g., Button) where applicable; verify the component's usage instructions before implementing."
+        },
+        {
           "path": "frontend/src/features/calculator/CalculatorPage.tsx",
           "operation": "modify",
-          "description": "Update the header structure/classes to group the logo + “Soumyajit Dutta” as a cohesive identity block within the existing header, preserving spacing/typography and ensuring the History/Calculator toggle remains aligned and fully functional in both views."
+          "description": "Integrate the usePremium hook at the CalculatorPage level so premium state persists and is available to both the StepsPanel and PremiumSection. Ensure state updates propagate immediately without reload."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Gate the Steps panel content based on premium status: limited/basic steps when locked and full detailed steps when unlocked, with an explicit premium prompt message.",
+      "acceptanceCriteria": [
+        "With premium locked, the Steps panel displays only a subset of steps (basic view) and an explicit message in English indicating that premium unlock reveals the full/detailed steps.",
+        "With premium unlocked, the Steps panel displays the complete generated steps list.",
+        "Toggling premium state (via the confirmation flow) updates the Steps panel immediately without requiring a reload.",
+        "Existing step generation remains local/rule-based and does not call any external AI APIs."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/steps/StepsPanel.tsx",
+          "operation": "modify",
+          "description": "Extend StepsPanel props to accept premium status (e.g., isPremium) and render either (a) the full steps list when premium is unlocked, or (b) a basic/limited subset when locked (e.g., first N steps), along with an explicit English message inside the panel indicating premium unlock reveals full/detailed steps. Continue using the existing shadcn-ui Accordion for structure; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/calculator/CalculatorPage.tsx",
+          "operation": "modify",
+          "description": "Pass the premium state into StepsPanel so that unlocking via the in-app confirmation updates the displayed steps immediately. Ensure this gating only affects display and does not change the existing local/rule-based step generation."
         }
       ]
     }

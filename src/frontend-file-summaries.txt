@@ -3,7 +3,7 @@
   "frontend/index.html": "HTML entry point with PWA meta tags for mobile app-like experience and manifest link.",
   "frontend/public/manifest.webmanifest": "Web app manifest for add-to-home-screen functionality with standalone display mode.",
   "frontend/src/App.tsx": "Root application component that renders the calculator page.",
-  "frontend/src/features/calculator/CalculatorPage.tsx": "Main calculator page with header displaying the SD logo alongside \"Soumyajit Dutta\", calculator/history toggle, display, keypad, steps panel, and footer with attribution.",
+  "frontend/src/features/calculator/CalculatorPage.tsx": "Main calculator page integrating premium state management, rendering calculator/history views, steps panel, and premium section below steps when available.",
   "frontend/src/features/calculator/CalculatorDisplay.tsx": "Calculator display component showing current expression, result, and error messages with premium styling.",
   "frontend/src/features/calculator/CalculatorKeypad.tsx": "Scientific calculator keypad with 8x4 grid of buttons including all scientific functions, styled with variant-based theming.",
   "frontend/src/features/calculator/useCalculator.ts": "Calculator state management hook handling display, result, error, and button interactions with tokenize/parse/evaluate pipeline.",
@@ -14,6 +14,8 @@
   "frontend/src/lib/calc/stepSolver.ts": "Local rule-based step generator that produces detailed multi-step explanations of expression evaluation without external APIs.",
   "frontend/src/features/history/useLocalHistory.ts": "Custom hook managing calculation history in localStorage with add, load, and clear operations.",
   "frontend/src/features/history/HistoryPanel.tsx": "History view component with scrollable list of past calculations and clear button.",
-  "frontend/src/features/steps/StepsPanel.tsx": "Collapsible accordion panel displaying step-by-step solution explanations with numbered steps.",
-  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks; intentionally minimal as calculator requires no backend queries."
+  "frontend/src/features/steps/StepsPanel.tsx": "Collapsible accordion panel displaying step-by-step solution explanations with premium gating that shows only first 2 steps for free users and full steps for premium users.",
+  "frontend/src/hooks/useQueries.ts": "Placeholder file for React Query hooks; intentionally minimal as calculator requires no backend queries.",
+  "frontend/src/features/premium/usePremium.ts": "React hook managing premium unlock state in localStorage with methods to unlock, reset, and check premium status.",
+  "frontend/src/features/calculator/PremiumSection.tsx": "Premium section component displaying UPI payment buttons for unlock (₹50) and donation, with confirmation flow and premium status indicator."
 }
